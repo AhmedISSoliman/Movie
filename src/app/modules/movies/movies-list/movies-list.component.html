@@ -1,0 +1,36 @@
+<div class="container">
+  <!-- <div class="headerdetails"> -->
+  <div class="row align-items-center headerdetails">
+    <div class="col-12 col-md-6 col-lg-4">
+      <h1>Movies List</h1>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4" style="text-align: end">
+      <button (click)="OpenMovieCreate()" class="btn btn-info"><i class="fas fa-plus mr-2"></i>Create new movie</button>
+    </div>
+  </div>
+  <div class="row w-50 my-4 justify-content-end">
+    <ng-select (change)="browsMovieByCategory($event)" placeholder="Category" [items]="categoriesList" bindLabel="name"
+      bindValue="id" class="w-100">
+    </ng-select>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 mb-4" style="box-shadow: 0px 0px 7px 2px lightgrey;"
+      *ngFor="let movie of moviesList">
+      <div class="card w-100" style="width: 18rem;">
+        <img class="card-img-top w-100 h-50" [src]="baseUrl+movie.image" alt="" style="cursor: pointer;"
+          (click)="openMovieDetails(movie.id)">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.name}}</h5>
+          <p class="card-text">{{movie.description}} </p>
+          <div class="d-flex actionBtn">
+            <button class="btn btn-primary" (click)="openMovieUpdate(movie.id)">Update Movie</button>
+            <button class="btn btn-danger" (click)="openMovieDetails(movie.id)">Delete Movie</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

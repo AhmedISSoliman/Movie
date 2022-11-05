@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Movie Details</h4>
+</div>
+<div class="modal-body" *ngIf="movieDetails">
+  <div class="row m-auto">
+    <div class="col-8 m-auto">
+      <img class="w-100 h-50 mb-3" style="border-radius: 10px;" [src]="baseUrl+movieDetails.image" alt="">
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="movieDetails">
+    <div class="col-12">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Name:</label>
+          <p style="word-break: break-all;">{{movieDetails.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Description:</label>
+          <p style="word-break: break-all;">{{movieDetails.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Created Date:</label>
+          <p>{{ movieDetails.created_at | date :"mediumDate"}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Updated Date:</label>
+          <p>{{ movieDetails.updated_at | date :"mediumDate"}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-12 col-lg-6">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Category:</label>
+          <p>{{ movieDetails.category.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="confirmDelete(movieDetails.id)" class="btn btn-danger ms-2">Delete</button>
+    <button type="button" (click)="activeModal.dismiss('')" class="btn btn-outline-info ms-2">Back</button>
+  </div>
+</div>

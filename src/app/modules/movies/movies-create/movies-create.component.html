@@ -1,0 +1,87 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title" style="color: black;">Create Movie</h4>
+</div>
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="name">Movie Name</label>
+            <input id="name" type="text" class="form-control" formControlName="name" name="name" placeholder="Name">
+            <div
+              *ngIf="(createForm.controls.name.touched || isFormSubmitted)&& createForm.controls.name.errors&& createForm.controls.name.errors.required != null"
+              class="text-danger">field is required
+            </div>
+            <div
+              *ngIf="(createForm.controls.name.touched || isFormSubmitted)&& createForm.controls.name.errors&& createForm.controls.name.errors.minlength != null"
+              class="text-danger">min length is 5
+            </div>
+            <div
+              *ngIf="(createForm.controls.name.touched || isFormSubmitted)&& createForm.controls.name.errors&& createForm.controls.name.errors.maxlength != null"
+              class="text-danger">max length 50
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-group">
+            <label form="description">Description</label>
+            <input id="description" type="text" class="form-control" formControlName="description" name="description"
+              placeholder="Description">
+            <div
+              *ngIf="(createForm.controls.description.touched || isFormSubmitted)&& createForm.controls.description.errors&& createForm.controls.description.errors.required != null"
+              class="text-danger">field is required
+            </div>
+            <div
+              *ngIf="(createForm.controls.description.touched || isFormSubmitted)&& createForm.controls.description.errors&& createForm.controls.description.errors.minlength != null"
+              class="text-danger">min length is 5
+            </div>
+            <div
+              *ngIf="(createForm.controls.description.touched || isFormSubmitted)&& createForm.controls.description.errors&& createForm.controls.description.errors.maxlength != null"
+              class="text-danger">max length 100
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input id="image" type="file" class="form-control d-none" formControlName="image" name="image"
+              placeholder="Image" (change)="onFileChange($event)" #inputValue>
+            <input id="image" type="text" class="form-control" formControlName="image" name="image" placeholder="Image"
+              [value]="inputValue.value">
+            <button type="button" (click)="inputValue.click()" class="btn btn-outline-dark mt-2">Add image</button>
+            <div
+              *ngIf="(createForm.controls.image.touched || isFormSubmitted)&& createForm.controls.image.errors&& createForm.controls.image.errors.required != null"
+              class="text-danger">field is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="category_id">Category</label>
+            <ng-select id="category_id" formControlName="category_id" name="category_id" placeholder="Category">
+              <ng-option *ngFor="let item of categories" [value]="item.id">
+                {{item.name}}
+              </ng-option>
+            </ng-select>
+            <div
+              *ngIf="(createForm.controls.category_id.touched || isFormSubmitted)&& createForm.controls.category_id.errors&& createForm.controls.category_id.errors.required != null"
+              class="text-danger">field is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-info ms-2">Save</button>
+    <button type="button" (click)="activeModal.dismiss('')" class="btn btn-outline-info ms-2">Back</button>
+  </div>
+</form>

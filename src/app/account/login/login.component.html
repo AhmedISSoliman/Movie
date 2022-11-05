@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <form class="form-auth" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="row m-auto">
+      <h1 class="mb-3 font-weight-normal" style="padding-left: 15px;padding-right:15px">Sign in</h1>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="text" id="inputEmail" class="form-control" formControlName="email" placeholder="Email address">
+          <div
+            *ngIf="(loginForm.controls.email.touched || isFormSubmitted)&& loginForm.controls.email.errors&& loginForm.controls.email.errors.required != null"
+            class="text-danger">Email is required
+          </div>
+          <div
+            *ngIf="(loginForm.controls.email.touched || isFormSubmitted)&& loginForm.controls.email.errors&& loginForm.controls.email.errors.email != null"
+            class="text-danger">Not valid email
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input formControlName="password" type="password" id="inputPassword" class="form-control"
+            placeholder="Password">
+          <div
+            *ngIf="(loginForm.controls.password.touched || isFormSubmitted)&& loginForm.controls.password.errors&& loginForm.controls.password.errors.required != null"
+            class="text-danger">password is required
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="mt-4">
+          <p>Create new Account ? <span style="color: rgb(230, 196, 5); "><a [routerLink]="'/register'"
+                style="text-decoration:underline;color: black;">Sign up</a>
+            </span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</div>
